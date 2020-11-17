@@ -9,4 +9,4 @@ spring:
         server-addr: 39.108.102.124:28848
 
 provider:
-  url: http://provider-customer-profile
+  name: provider-customer-profile

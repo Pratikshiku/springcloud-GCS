@@ -2,26 +2,29 @@ package top.ptcc9.commonresult;
 
 import lombok.Data;
 
+/**
+ * @Author: Pratikshiku
+ * @Description: a result template
+ * @Date: 2020-11-17 12:02
+ */
 @Data
-public class ProviderResult<T> {
+public class CommonResult<T> {
     private Integer stateCode;
     private String message;
     private T data;
-    private boolean state;
 
-    public ProviderResult(CODE code) {
-        this(code,null,false);
+    public CommonResult() {
+
     }
 
-    public ProviderResult(CODE code,T data) {
-        this(code,data,true);
+    public CommonResult(CommonResult.CODE code) {
+        this(code,null);
     }
 
-    public ProviderResult(CODE code, T data, boolean state) {
+    public CommonResult(CommonResult.CODE code, T data) {
         this.stateCode = code.getCode();
         this.message = code.getMessage();
         this.data = data;
-        this.state = state;
     }
 
     public enum CODE {

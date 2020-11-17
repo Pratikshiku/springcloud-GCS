@@ -3,18 +3,17 @@ package top.ptcc9.controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import top.ptcc9.commonresult.CommonResult;
 
 @RestController
 public class CustomerController {
-
     /**
-     * this is a example method
+     * this is an example method
      * @return
      */
-    @RequestMapping(value = "/getString",method = RequestMethod.GET)
-    public String getString() {
+    @RequestMapping(value = "/customer/getString",method = RequestMethod.GET)
+    public CommonResult<String> getString() {
         String testString = "this is a test message for success";
-        boolean flag = true;
-        return flag ? testString : "error message";
+        return new CommonResult<>(CommonResult.CODE.SUCCESS_QUERY,testString);
     }
 }
