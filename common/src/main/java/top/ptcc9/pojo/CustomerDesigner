@@ -1,0 +1,27 @@
+顾客下单类 === order
+id                  订单id *
+customer_id         顾客id *
+worker_id           工作人员id *
+date                下单时间 *
+area                管辖区域 *
+address             订单地址 *
+pre_weight          订单预估重量 *
+weight              订单真实重量
+state               订单状态 *  (1.未完成    2.已完成    3.取消)
+price               订单价格 *
+remarks             订单备注
+comment             订单评价
+
+
+
+顾客地址类 === address
+address_id
+customer_id
+area_id
+address             详细地址
+phone               联系电话
+
+
+
+
+

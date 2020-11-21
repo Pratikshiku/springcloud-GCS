@@ -2,21 +2,23 @@ package top.ptcc9.pojo;
 
 import lombok.Data;
 import lombok.experimental.Accessors;
-
 import java.util.Date;
 
+/**
+ * @author Pratik_shiku
+ */
 @Data
 @Accessors(chain = true)
 public class Customer {
     /**
      * 顾客 id （主键）
      */
-    private Long customerId;
+    private Long id;
 
     /**
      * 顾客 phone
      */
-    private String customerPhone;
+    private String phone;
 
     /**
      * 顾客 password
@@ -45,7 +47,4 @@ public class Customer {
      * 默认值 0
      */
     private Integer deleted;
-
-
-
 }
