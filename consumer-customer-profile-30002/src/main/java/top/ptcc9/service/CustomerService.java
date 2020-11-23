@@ -14,6 +14,11 @@ import top.ptcc9.commonresult.CommonResult;
 @Component
 @FeignClient(value = "${provider.name}")
 public interface CustomerService {
+
+    /**
+     * 测试方法
+     * @return
+     */
     @RequestMapping(value = "/customer/getString",method = RequestMethod.GET)
     CommonResult<String> getString();
 }

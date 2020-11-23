@@ -28,6 +28,9 @@ public class CommonResult<T> {
     }
 
     public enum CODE {
+        /**
+         * 状态码
+         */
         SUCCESS_QUERY(200,"query success"),
         SUCCESS_UPDATE(201,"update success"),
         SUCCESS_INSERT(202,"insert success"),
