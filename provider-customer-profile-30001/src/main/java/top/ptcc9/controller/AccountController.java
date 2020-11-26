@@ -23,21 +23,20 @@ public class AccountController {
     @Resource
     private AccountService accountService;
 
+    /**
+     * 用户输入的密码进行加密
+     * po => vo
+     * 签发token
+     * @param phone
+     * @param password
+     * @return
+     */
     @RequestMapping(value = "/doLogin",method = RequestMethod.GET)
     public CommonResult<CustomerVo> doLogin(String phone,String password) {
         Customer customerByPhone = accountService.getCustomerByPhone(phone);
-        /**
-         * 用户输入的密码进行加密
-         */
         String md5Password = SecureUtil.md5().digestHex(password);
         if (customerByPhone != null && md5Password.equals(customerByPhone.getPassword())) {
-            /**
-             * po => vo
-             */
             CustomerVo customerVo = accountService.customerToVo(customerByPhone);
-            /**
-             * 签发token
-             */
             Map<String, String> map = new HashMap<>(1);
             map.put("id",customerVo.getId());
             String token = JwtUtil.create(map);
