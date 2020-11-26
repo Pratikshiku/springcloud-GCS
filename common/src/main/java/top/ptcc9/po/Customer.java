@@ -1,7 +1,8 @@
-package top.ptcc9.pojo;
+package top.ptcc9.po;
 
 import lombok.Data;
 import lombok.experimental.Accessors;
+
 import java.util.Date;
 
 /**
@@ -13,7 +14,7 @@ public class Customer {
     /**
      * 顾客 id （主键）
      */
-    private Long id;
+    private String id;
 
     /**
      * 顾客 phone
@@ -40,7 +41,7 @@ public class Customer {
      * 顾客 会员过期时间
      * 无会员可为 null
      */
-    private Date vipExpirationTime;
+    private Date vipExpiration;
 
     /**
      * 顾客 逻辑删除

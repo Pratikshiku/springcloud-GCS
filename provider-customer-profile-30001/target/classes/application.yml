@@ -3,37 +3,21 @@ server:
 spring:
   application:
     name: provider-customer-profile
-#  datasource:
-#    driver-class-name: com.mysql.jdbc.Driver
-#    url: jdbc:mysql://120.77.150.238:3306/forum?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
-#    username: root
-#    password: 123456
-#    redis:
-#      host: 39.108.102.124
-#      port: 30001
-#      database: 2
-#    servlet:
-#      multipart:
-#        max-request-size: 100MB
-#        max-file-size: 10MB
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://39.108.102.124:23306/customer?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: H03089611.
   cloud:
     nacos:
       discovery:
         server-addr: 39.108.102.124:28848
-#    sentinel:
-#      transport:
-#        #dashboard: 8.129.126.4:10002
-#        dashboard: localhost:8080
-#        port: 8719
-#        #client-ip: 192.168.43.216
-#      datasource:
-#        ds1:
-#          nacos:
-#            server-addr: 8.129.126.4:18848
-#            dataId: ${spring.application.name}
-#            groupId: DEFAULT_GROUP
-#            data-type: json
-#            rule-type: flow
+
+#mybatis-plus 配置日志
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true   #关闭 驼峰命名 下划线 映射
 
 management:
   endpoints:

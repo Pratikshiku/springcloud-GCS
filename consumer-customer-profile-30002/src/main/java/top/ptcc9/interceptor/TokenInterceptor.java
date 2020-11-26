@@ -3,7 +3,6 @@ package top.ptcc9.interceptor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 import top.ptcc9.annotations.LoginRequired;
@@ -40,14 +39,6 @@ public class TokenInterceptor extends WebMvcConfigurationSupport {
                     }
                 }
                 return isPass;
-            }
-
-            @Override
-            public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-            }
-
-            @Override
-            public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
             }
         };
         registry.addInterceptor(handlerInterceptor).addPathPatterns("/**");
