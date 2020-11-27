@@ -10,6 +10,7 @@ import top.ptcc9.utils.JwtUtil;
 import top.ptcc9.vo.CustomerVo;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -47,6 +48,11 @@ public class AccountController {
         }
     }
 
+    /**
+     * 执行 insert 返回成功或失败状态码
+     * @param customer
+     * @return
+     */
     @RequestMapping(value = "/doSignUp",method = RequestMethod.POST)
     public CommonResult<String> doSignUp(@RequestBody Customer customer) {
         if (accountService.insertCustomer(customer) == 1) {
@@ -56,7 +62,25 @@ public class AccountController {
         }
     }
 
-    public CommonResult<CustomerVo> getCurrentCustomer() {
-        return null;
+
+    /**
+     * 获取token
+     * 通过token请求当前用户信息
+     * po => vo
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "/getCurrentCustomerInfo",method = RequestMethod.GET)
+    public CommonResult<CustomerVo> getCurrentCustomerInfo(
+            HttpServletRequest request
+    ) {
+        String token = request.getHeader("token");
+        Customer currentCustomerInfo = accountService.getCurrentCustomerInfo(token);
+        if (currentCustomerInfo != null) {
+            CustomerVo customerVo = accountService.customerToVo(currentCustomerInfo);
+            return new CommonResult<>(CommonResult.State.SUCCESS_QUERY,customerVo);
+        }else {
+            return new CommonResult<>(CommonResult.State.ERROR_QUERY_NON);
+        }
     }
 }

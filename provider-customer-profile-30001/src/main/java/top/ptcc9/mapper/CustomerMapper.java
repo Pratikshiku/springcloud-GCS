@@ -30,4 +30,13 @@ public interface CustomerMapper extends BaseMapper<Customer> {
      */
     @Select("select id,phone,balance,create_time,vip_expiration from customer where id = #{id} and deleted = 0 limit 1")
     Customer getCustomerById(String id);
+
+
+    /**
+     * 查看手机号是否已注册
+     * @param phone
+     * @return
+     */
+    @Select("select 1 from customer where phone = #{phone}")
+    Integer checkRegistered(String phone);
 }

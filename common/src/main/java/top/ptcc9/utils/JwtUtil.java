@@ -16,8 +16,8 @@ import java.util.Map;
  * @date: 2020-11-22 14:32
  */
 public class JwtUtil {
-    private static final long ONE_MINUTE = 60 * 1000;
-    private static final long EXPIRE_TIME = 30 * ONE_MINUTE;
+    private static final long ONE_HOUR = 60 * 1000 * 60;
+    private static final long EXPIRE_TIME = 5 * ONE_HOUR;
     private static final String TOKEN_SECRET = "SDFdkmWEUTMC151kmho6dfeFGOlkc0ERDF";
 
 

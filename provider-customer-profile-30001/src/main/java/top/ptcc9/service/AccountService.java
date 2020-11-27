@@ -35,8 +35,8 @@ public interface AccountService {
 
     /**
      * 根据 id 查询用户 无密码字段
-     * @param id
+     * @param token
      * @return
      */
-    public Customer getCustomerById(String id);
+    public Customer getCurrentCustomerInfo(String token);
 }
