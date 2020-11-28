@@ -46,6 +46,8 @@ public class CommonResult<T> {
         SUCCESS_LOGIN(204,"login success"),
         SUCCESS_SIGN_UP(205,"sign up success"),
 
+        NO_TOKEN(409,"no token"),
+        EXPIRED_TOKEN(410,"token expired"),
         ERROR_NO_AUTHORITY(401,"no authority"),
         ERROR_LOGIN(402,"fail login"),
         ERROR_TIMEOUT(403,"timeout"),

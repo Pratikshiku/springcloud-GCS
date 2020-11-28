@@ -10,6 +10,8 @@ import top.ptcc9.commonresult.CommonResult;
 import top.ptcc9.po.Customer;
 import top.ptcc9.vo.CustomerVo;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * @Author: Pratikshiku
  * @Description:
@@ -17,7 +19,7 @@ import top.ptcc9.vo.CustomerVo;
  */
 @Component
 @FeignClient(value = "${provider.name}")
-public interface CustomerService {
+public interface AccountService {
 
     /**
      * 消费者 调用服务提供者doLogin
@@ -36,4 +38,13 @@ public interface CustomerService {
      */
     @RequestMapping(value = "/doSignUp",method = RequestMethod.POST)
     CommonResult<String> doSignUp(@RequestBody Customer customer);
+
+
+    /**
+     * 调用服务提供者  获取当前登录用户的详细信息
+     * @param token
+     * @return
+     */
+    @RequestMapping(value = "/getCurrentCustomerInfo",method = RequestMethod.GET)
+    CommonResult<CustomerVo> getCurrentCustomerInfo(@RequestParam("token") String token);
 }

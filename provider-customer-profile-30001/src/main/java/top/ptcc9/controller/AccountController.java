@@ -67,14 +67,13 @@ public class AccountController {
      * 获取token
      * 通过token请求当前用户信息
      * po => vo
-     * @param request
+     * @param token
      * @return
      */
     @RequestMapping(value = "/getCurrentCustomerInfo",method = RequestMethod.GET)
     public CommonResult<CustomerVo> getCurrentCustomerInfo(
-            HttpServletRequest request
+            String token
     ) {
-        String token = request.getHeader("token");
         Customer currentCustomerInfo = accountService.getCurrentCustomerInfo(token);
         if (currentCustomerInfo != null) {
             CustomerVo customerVo = accountService.customerToVo(currentCustomerInfo);
