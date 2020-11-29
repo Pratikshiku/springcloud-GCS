@@ -6,17 +6,13 @@ import cn.hutool.core.date.DateUnit;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.crypto.SecureUtil;
-import com.auth0.jwt.interfaces.Claim;
-import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 import top.ptcc9.mapper.CustomerMapper;
-import top.ptcc9.po.Customer;
+import top.ptcc9.pojo.DO.Customer;
 import top.ptcc9.service.AccountService;
-import top.ptcc9.utils.JwtUtil;
-import top.ptcc9.vo.CustomerVo;
+import top.ptcc9.pojo.VO.CustomerVo;
 
 import javax.annotation.Resource;
-import java.util.Map;
 
 /**
  * @author: HE LONG CAN
@@ -73,8 +69,7 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public Customer getCurrentCustomerInfo(String token) {
-        String id = JwtUtil.getClaims(token).get("id").asString();
+    public Customer getCurrentCustomerInfo(String id) {
         return customerMapper.getCustomerById(id);
     }
 }

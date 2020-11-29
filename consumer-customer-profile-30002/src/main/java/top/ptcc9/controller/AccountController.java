@@ -1,14 +1,18 @@
 package top.ptcc9.controller;
 
+import com.auth0.jwt.interfaces.Claim;
 import org.springframework.web.bind.annotation.*;
 import top.ptcc9.annotations.LoginRequired;
 import top.ptcc9.commonresult.CommonResult;
-import top.ptcc9.po.Customer;
+import top.ptcc9.pojo.DO.Customer;
+import top.ptcc9.pojo.DTO.LoginRegisterCustomerDto;
 import top.ptcc9.service.AccountService;
-import top.ptcc9.vo.CustomerVo;
+import top.ptcc9.utils.JwtUtil;
+import top.ptcc9.pojo.VO.CustomerVo;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.util.Map;
 
 /**
  * @author Pratik_shiku
@@ -19,8 +23,8 @@ public class AccountController {
     private AccountService accountService;
 
     @RequestMapping(value = "/doLogin",method = RequestMethod.GET)
-    public CommonResult<CustomerVo> doLogin(Customer customer) {
-        return accountService.doLogin(customer.getPhone(),customer.getPassword());
+    public CommonResult<String> doLogin(LoginRegisterCustomerDto customerDto) {
+        return accountService.doLogin(customerDto);
     }
 
     @RequestMapping(value = "/doSignUp",method = RequestMethod.POST)
@@ -34,6 +38,9 @@ public class AccountController {
     public CommonResult<CustomerVo> getCurrentCustomerInfo(
             HttpServletRequest request
     ) {
-        return accountService.getCurrentCustomerInfo(request.getHeader("token"));
+        String token = request.getHeader("token");
+        Map<String, Claim> claims = JwtUtil.getClaims(token);
+        String id = claims.get("id").asString();
+        return accountService.getCurrentCustomerInfo(id);
     }
 }

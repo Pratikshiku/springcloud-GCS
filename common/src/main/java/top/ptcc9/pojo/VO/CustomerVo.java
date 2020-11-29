@@ -1,4 +1,4 @@
-package top.ptcc9.vo;
+package top.ptcc9.pojo.VO;
 
 import lombok.Data;
 
@@ -15,7 +15,6 @@ public class CustomerVo {
     private String createTime;
     private boolean isExpired;
     private Long vipExpiration;
-    private String token;
 
     public CustomerVo() {
         this.isExpired = true;

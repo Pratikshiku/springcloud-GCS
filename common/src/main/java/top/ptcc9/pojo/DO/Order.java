@@ -1,4 +1,4 @@
-package top.ptcc9.po;
+package top.ptcc9.pojo.DO;
 
 import lombok.Data;
 import java.util.Date;

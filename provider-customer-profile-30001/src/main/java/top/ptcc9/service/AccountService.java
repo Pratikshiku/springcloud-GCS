@@ -1,8 +1,8 @@
 package top.ptcc9.service;
 
 import org.springframework.stereotype.Component;
-import top.ptcc9.po.Customer;
-import top.ptcc9.vo.CustomerVo;
+import top.ptcc9.pojo.DO.Customer;
+import top.ptcc9.pojo.VO.CustomerVo;
 
 /**
  * @author: HE LONG CAN

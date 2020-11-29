@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
-import top.ptcc9.po.Customer;
+import top.ptcc9.pojo.DO.Customer;
 
 /**
  * @author: HE LONG CAN
@@ -20,7 +20,7 @@ public interface CustomerMapper extends BaseMapper<Customer> {
      * @param phone
      * @return
      */
-    @Select("select * from customer where phone = #{phone} and deleted = 0 limit 1")
+    @Select("select id,password from customer where phone = #{phone} and deleted = 0 limit 1")
     Customer getCustomerByPhone(String phone);
 
     /**
@@ -37,6 +37,6 @@ public interface CustomerMapper extends BaseMapper<Customer> {
      * @param phone
      * @return
      */
-    @Select("select 1 from customer where phone = #{phone}")
+    @Select("select 1 from customer where phone = #{phone} limit 1")
     Integer checkRegistered(String phone);
 }

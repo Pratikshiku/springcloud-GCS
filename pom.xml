@@ -28,6 +28,8 @@
 <!--        <druid.version>1.1.16</druid.version>-->
         <mybatisPlus.spring.boot.version>3.3.1.tmp</mybatisPlus.spring.boot.version>
         <jwt.version>3.5.0</jwt.version>
+        <org.httpclient.version>4.5.3</org.httpclient.version>
+        <feign-httpclient.version>10.1.0</feign-httpclient.version>
     </properties>
 
 

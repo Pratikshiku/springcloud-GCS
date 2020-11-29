@@ -4,13 +4,13 @@ package top.ptcc9.controller;
 import cn.hutool.crypto.SecureUtil;
 import org.springframework.web.bind.annotation.*;
 import top.ptcc9.commonresult.CommonResult;
-import top.ptcc9.po.Customer;
+import top.ptcc9.pojo.DO.Customer;
+import top.ptcc9.pojo.DTO.LoginRegisterCustomerDto;
 import top.ptcc9.service.AccountService;
 import top.ptcc9.utils.JwtUtil;
-import top.ptcc9.vo.CustomerVo;
+import top.ptcc9.pojo.VO.CustomerVo;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,21 +28,21 @@ public class AccountController {
      * 用户输入的密码进行加密
      * po => vo
      * 签发token
-     * @param phone
-     * @param password
+     * @param customerDto
      * @return
      */
-    @RequestMapping(value = "/doLogin",method = RequestMethod.GET)
-    public CommonResult<CustomerVo> doLogin(String phone,String password) {
-        Customer customerByPhone = accountService.getCustomerByPhone(phone);
-        String md5Password = SecureUtil.md5().digestHex(password);
+    @RequestMapping(value = "/doLogin",method = RequestMethod.POST)
+    public CommonResult<String> doLogin(@RequestBody LoginRegisterCustomerDto customerDto) {
+        //query(phone) => customer(id,password)
+        Customer customerByPhone = accountService.getCustomerByPhone(customerDto.getPhone());
+        //加密
+        String md5Password = SecureUtil.md5().digestHex(customerDto.getPassword());
         if (customerByPhone != null && md5Password.equals(customerByPhone.getPassword())) {
-            CustomerVo customerVo = accountService.customerToVo(customerByPhone);
+            //生成token
             Map<String, String> map = new HashMap<>(1);
-            map.put("id",customerVo.getId());
+            map.put("id",customerByPhone.getId());
             String token = JwtUtil.create(map);
-            customerVo.setToken(token);
-            return new CommonResult<>(CommonResult.State.SUCCESS_LOGIN,customerVo);
+            return new CommonResult<>(CommonResult.State.SUCCESS_LOGIN,token);
         }else {
             return new CommonResult<>(CommonResult.State.ERROR_LOGIN);
         }
@@ -64,17 +64,16 @@ public class AccountController {
 
 
     /**
-     * 获取token
-     * 通过token请求当前用户信息
+     * id 查询用户
      * po => vo
-     * @param token
+     * @param id
      * @return
      */
     @RequestMapping(value = "/getCurrentCustomerInfo",method = RequestMethod.GET)
     public CommonResult<CustomerVo> getCurrentCustomerInfo(
-            String token
+            String id
     ) {
-        Customer currentCustomerInfo = accountService.getCurrentCustomerInfo(token);
+        Customer currentCustomerInfo = accountService.getCurrentCustomerInfo(id);
         if (currentCustomerInfo != null) {
             CustomerVo customerVo = accountService.customerToVo(currentCustomerInfo);
             return new CommonResult<>(CommonResult.State.SUCCESS_QUERY,customerVo);
