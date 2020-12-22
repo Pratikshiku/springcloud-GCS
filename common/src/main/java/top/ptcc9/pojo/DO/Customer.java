@@ -14,17 +14,12 @@ public class Customer {
     /**
      * 顾客 id （主键）
      */
-    private String id;
+    private String openId;
 
     /**
-     * 顾客 phone
+     * 默认地址id
      */
-    private String phone;
-
-    /**
-     * 顾客 password
-     */
-    private String password;
+    private String defaultAddressId;
 
     /**
      * 顾客 余额
@@ -42,10 +37,4 @@ public class Customer {
      * 无会员可为 null
      */
     private Date vipExpiration;
-
-    /**
-     * 顾客 逻辑删除
-     * 默认值 0
-     */
-    private Integer deleted;
 }

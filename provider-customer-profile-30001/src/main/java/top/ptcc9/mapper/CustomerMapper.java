@@ -16,27 +16,10 @@ import top.ptcc9.pojo.DO.Customer;
 @Repository
 public interface CustomerMapper extends BaseMapper<Customer> {
     /**
-     * 通过手机号查用户
-     * @param phone
+     * 根据 openId 获取用户信息
+     * @param openId
      * @return
      */
-    @Select("select id,password from customer where phone = #{phone} and deleted = 0 limit 1")
-    Customer getCustomerByPhone(String phone);
-
-    /**
-     * 通过 id 取用户
-     * @param id
-     * @return
-     */
-    @Select("select id,phone,balance,create_time,vip_expiration from customer where id = #{id} and deleted = 0 limit 1")
-    Customer getCustomerById(String id);
-
-
-    /**
-     * 查看手机号是否已注册
-     * @param phone
-     * @return
-     */
-    @Select("select 1 from customer where phone = #{phone} limit 1")
-    Integer checkRegistered(String phone);
+    @Select("select * from customer where open_id = #{openId}")
+    public Customer getCustomerByOpenId(String openId);
 }

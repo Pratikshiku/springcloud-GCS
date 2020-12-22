@@ -1,7 +1,9 @@
 package top.ptcc9.service;
 
 import org.springframework.stereotype.Component;
+import top.ptcc9.commonresult.CommonResult;
 import top.ptcc9.pojo.DO.Customer;
+import top.ptcc9.pojo.DTO.WeChatLoginDto;
 import top.ptcc9.pojo.VO.CustomerVo;
 
 /**
@@ -12,31 +14,17 @@ import top.ptcc9.pojo.VO.CustomerVo;
 @Component
 public interface AccountService {
     /**
-     * pojo => vo
-     * @param customer
+     * 通过 code 取得 openId
+     * @param weChatLoginDto
      * @return
      */
-    public CustomerVo customerToVo(Customer customer);
-
-    /**
-     * 通过 Phone 查询 Customer
-     * @param phone
-     * @return
-     */
-    public Customer getCustomerByPhone(String phone);
+    public String getOpenId(WeChatLoginDto weChatLoginDto);
 
 
     /**
-     * 插入用户 ==> 持久层
-     * @param customer
+     * 小程序登录
+     * @param openId
      * @return
      */
-    public Integer insertCustomer(Customer customer);
-
-    /**
-     * 根据 id 查询用户 无密码字段
-     * @param token
-     * @return
-     */
-    public Customer getCurrentCustomerInfo(String token);
+    public CommonResult<CustomerVo> doLogin(String openId);
 }

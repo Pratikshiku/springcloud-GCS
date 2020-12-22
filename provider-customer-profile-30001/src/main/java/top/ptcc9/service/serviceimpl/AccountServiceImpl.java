@@ -6,13 +6,25 @@ import cn.hutool.core.date.DateUnit;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.crypto.SecureUtil;
+import cn.hutool.json.JSON;
+import cn.hutool.json.JSONObject;
+import cn.hutool.json.JSONUtil;
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.http.util.EntityUtils;
 import org.springframework.stereotype.Service;
+import top.ptcc9.commonresult.CommonResult;
 import top.ptcc9.mapper.CustomerMapper;
 import top.ptcc9.pojo.DO.Customer;
+import top.ptcc9.pojo.DTO.WeChatLoginDto;
 import top.ptcc9.service.AccountService;
 import top.ptcc9.pojo.VO.CustomerVo;
 
 import javax.annotation.Resource;
+import java.util.Map;
 
 /**
  * @author: HE LONG CAN
@@ -25,51 +37,36 @@ public class AccountServiceImpl implements AccountService {
     private CustomerMapper customerMapper;
 
     @Override
-    public CustomerVo customerToVo(Customer customer) {
-        /**
-         * 属性拷贝
-         * 计算过两个日期之差
-         * 是否过期
-         */
-        CustomerVo customerVo = new CustomerVo();
-        BeanUtil.copyProperties(customer,customerVo,"createTime");
-        customerVo.setCreateTime(DateUtil.format(customer.getCreateTime(),"yyyy-MM-dd HH:mm:ss"));
-        if (customer.getVipExpiration() != null) {
-            DateTime expirationTime = DateTime.of(customer.getVipExpiration());
-            long between = DateUtil.between(DateTime.now(), expirationTime, DateUnit.DAY);
-            customerVo.setVipExpiration(between + 1);
-            customerVo.setExpired(expirationTime.isBefore(DateTime.now()));
+    public String getOpenId(WeChatLoginDto weChatLoginDto) {
+        StringBuilder requestUrl = new StringBuilder("https://api.weixin.qq.com/sns/jscode2session?");
+        requestUrl.append("appid=");
+        requestUrl.append(weChatLoginDto.getAPP_ID());
+        requestUrl.append("&secret=");
+        requestUrl.append(weChatLoginDto.getAPP_SECRET());
+        requestUrl.append("&js_code=");
+        requestUrl.append(weChatLoginDto.getCode());
+        requestUrl.append("&grant_type=authorization_code");
+        try{
+            HttpClient client = HttpClientBuilder.create().build();
+            HttpGet get = new HttpGet(requestUrl.toString());
+            HttpResponse response = client.execute(get);
+            HttpEntity result = response.getEntity();
+            String content = EntityUtils.toString(result);
+            JSONObject jsonObject = JSONUtil.parseObj(content);
+            Map<String, Object> map = BeanUtil.beanToMap(jsonObject);
+            for (Map.Entry<String, Object> item : map.entrySet()) {
+                System.out.println("item.getKey() = " + item.getKey());
+                System.out.println("item.getValue() = " + item.getValue());
+            }
+        }catch (Exception e){
+            e.printStackTrace();
         }
-        return customerVo;
+
+        return null;
     }
 
     @Override
-    public Customer getCustomerByPhone(String phone) {
-        return customerMapper.getCustomerByPhone(phone);
-    }
-
-    /**
-     * 生成时间 + 全局唯一id
-     * password加密
-     * 查看 phone 是否已注册
-     * 注册
-     * @param customer
-     * @return
-     */
-    @Override
-    public Integer insertCustomer(Customer customer) {
-        customer.setCreateTime(DateTime.now()).setId(IdUtil.simpleUUID());
-        String md5 = SecureUtil.md5().digestHex(customer.getPassword());
-        customer.setPassword(md5);
-        int insert = 0;
-        if (customerMapper.checkRegistered(customer.getPhone()) == null) {
-            insert = customerMapper.insert(customer);
-        }
-        return insert;
-    }
-
-    @Override
-    public Customer getCurrentCustomerInfo(String id) {
-        return customerMapper.getCustomerById(id);
+    public CommonResult<CustomerVo> doLogin(String openId) {
+        return null;
     }
 }
