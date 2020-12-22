@@ -9,8 +9,8 @@ import lombok.Data;
  */
 @Data
 public class CustomerVo {
-    private String id;
-    private String phone;
+    private String openId;
+    private String defaultAddressId;
     private Double balance;
     private String createTime;
     private boolean isExpired;

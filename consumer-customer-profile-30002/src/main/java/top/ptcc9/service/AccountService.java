@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import top.ptcc9.commonresult.CommonResult;
 import top.ptcc9.pojo.DTO.WeChatLoginDto;
-import top.ptcc9.pojo.VO.TokenVo;
 
 /**
  * @Author: Pratikshiku

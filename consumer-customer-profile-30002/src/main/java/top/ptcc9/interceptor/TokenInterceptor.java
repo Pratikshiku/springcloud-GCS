@@ -40,23 +40,14 @@ public class TokenInterceptor extends WebMvcConfigurationSupport {
              */
             @Override
             public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-                response.setCharacterEncoding("UTF-8");
-                response.setContentType("application/json; charset=utf-8");
                 boolean isPass = true;
-                JSONObject jsonObject = null;
                 HandlerMethod handlerMethod = (HandlerMethod) handler;
                 Method method = handlerMethod.getMethod();
                 if (method.isAnnotationPresent(LoginRequired.class)) {
-                    String token = request.getHeader("token");
-                    jsonObject = ((token == null) ? JSONUtil.parseObj(new CommonResult<String>(CommonResult.State.NO_TOKEN), false, true) : (JwtUtil.verity(token) ? null : JSONUtil.parseObj(new CommonResult<String>(CommonResult.State.EXPIRED_TOKEN), false, true)));
-                }
-                if (jsonObject != null) {
-                    PrintWriter out = null;
-                    out = response.getWriter();
-                    out.write(jsonObject.toString());
-                    out.flush();
-                    out.close();
-                    isPass = false;
+                    String currentCustomerId = request.getHeader("currentCustomerId");
+                    if (currentCustomerId == null || currentCustomerId.isEmpty()) {
+                        isPass = false;
+                    }
                 }
                 return isPass;
             }

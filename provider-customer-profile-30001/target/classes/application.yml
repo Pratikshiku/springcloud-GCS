@@ -17,7 +17,7 @@ spring:
 mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
-    map-underscore-to-camel-case: true   #关闭 驼峰命名 下划线 映射
+    map-underscore-to-camel-case: true
 
 management:
   endpoints:

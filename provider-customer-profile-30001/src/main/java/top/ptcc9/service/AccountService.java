@@ -18,13 +18,13 @@ public interface AccountService {
      * @param weChatLoginDto
      * @return
      */
-    public String getOpenId(WeChatLoginDto weChatLoginDto);
+     String getOpenId(WeChatLoginDto weChatLoginDto);
 
 
     /**
      * 小程序登录
-     * @param openId
+     * @param weChatLoginDto
      * @return
      */
-    public CommonResult<CustomerVo> doLogin(String openId);
+    CustomerVo doLogin(WeChatLoginDto weChatLoginDto);
 }
