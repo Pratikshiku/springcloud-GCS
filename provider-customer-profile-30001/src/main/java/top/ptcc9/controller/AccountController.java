@@ -30,4 +30,17 @@ public class AccountController {
         CustomerVo customerVo = accountService.doLogin(weChatLoginDto);
         return new CommonResult<>(CommonResult.State.SUCCESS_LOGIN,customerVo);
     }
+
+    /**
+     * res.code ==> openId
+     * @param openid
+     * @return
+     */
+    @RequestMapping(value = "/getCustomerInfoById",method = RequestMethod.GET)
+    public CommonResult<CustomerVo> getCustomerInfoById(String openid) {
+        CustomerVo customerVo = accountService.getCustomerInfoById(openid);
+        return customerVo != null ?
+                new CommonResult<>(CommonResult.State.SUCCESS_QUERY, customerVo) :
+                new CommonResult<>(CommonResult.State.ERROR_QUERY_NON);
+    }
 }
