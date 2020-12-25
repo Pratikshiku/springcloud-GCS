@@ -10,6 +10,6 @@ import lombok.Data;
 @Data
 public class WeChatLoginDto {
     private String code;
-    private final String APP_ID = "wx7f77f43127f66c3c";
-    private final String APP_SECRET = "1adeb83645027324fdc17c56bc794585";
+    private final String APP_ID = "wx855a4cd1717292bd";
+    private final String APP_SECRET = "645156b56330646944848f30a09468ce";
 }
