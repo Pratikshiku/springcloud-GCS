@@ -11,7 +11,7 @@ import lombok.Data;
 @Data
 public class Address {
     private String id;
-    private String customerId;
+    private String customerOpenId;
     private String areaId;
     /**
      * longitude 经度
