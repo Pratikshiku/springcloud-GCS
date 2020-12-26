@@ -13,18 +13,18 @@ import top.ptcc9.pojo.VO.CustomerVo;
  */
 @Component
 public interface AccountService {
-    /**
-     * 通过 code 取得 openId
-     * @param weChatLoginDto
-     * @return
-     */
-     String getOpenId(WeChatLoginDto weChatLoginDto);
-
 
     /**
      * 小程序登录
      * @param weChatLoginDto
-     * @return
+     * @return CustomerVo
      */
     CustomerVo doLogin(WeChatLoginDto weChatLoginDto);
+
+    /**
+     * 通过id获取个人信息通过id获取个人信息
+     * @param openid
+     * @return CustomerVo
+     */
+    CustomerVo getCustomerInfoById(String openid);
 }

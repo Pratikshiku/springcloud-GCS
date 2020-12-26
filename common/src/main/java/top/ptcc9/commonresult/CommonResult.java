@@ -13,10 +13,6 @@ public class CommonResult<T> {
     private String message;
     private T data;
 
-    public CommonResult() {
-
-    }
-
     public CommonResult(CommonResult.State state) {
         this(state,null);
     }
@@ -27,10 +23,6 @@ public class CommonResult<T> {
         this.data = data;
     }
 
-    public Integer getCode() {
-        return code;
-    }
-
     public T getData() {
         return data;
     }
@@ -39,19 +31,20 @@ public class CommonResult<T> {
         /**
          * 状态码
          */
-        SUCCESS_QUERY(200,"query success"),
-        SUCCESS_UPDATE(201,"update success"),
-        SUCCESS_INSERT(202,"insert success"),
-        SUCCESS_DELETE(203,"delete success"),
         SUCCESS_LOGIN(200,"login success"),
-        SUCCESS_SIGN_UP(205,"sign up success"),
+        ERROR_LOGIN(201,"failed login"),
+        SUCCESS_QUERY(202,"query success"),
+        ERROR_QUERY_NON(203,"no match rows"),
 
+        SUCCESS_INSERT(404,"insert success"),
+        SUCCESS_DELETE(404,"delete success"),
+        SUCCESS_SIGN_UP(205,"sign up success"),
+        SUCCESS_UPDATE(201,"update success"),
         NO_TOKEN(409,"no token"),
         EXPIRED_TOKEN(410,"token expired"),
         ERROR_NO_AUTHORITY(401,"no authority"),
-        ERROR_LOGIN(201,"failed login"),
         ERROR_TIMEOUT(403,"timeout"),
-        ERROR_QUERY_NON(404,"no match rows"),
+
         ERROR_UPDATE(405,"fail update"),
         ERROR_INSERT(406,"fail insert"),
         ERROR_DELETE(407,"fail delete"),
@@ -64,14 +57,6 @@ public class CommonResult<T> {
         State(Integer code,String message) {
             this.code = code;
             this.message = message;
-        }
-
-        public Integer getCode() {
-            return code;
-        }
-
-        public String getMessage() {
-            return message;
         }
     }
 }
