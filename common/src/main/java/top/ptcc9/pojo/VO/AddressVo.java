@@ -10,6 +10,9 @@ import lombok.Data;
 @Data
 public class AddressVo {
     private String id;
+    /**
+     * 广东省中山市石岐街道电子科技大学中山学院14栋414
+     */
     private String address;
     private String contactName;
     private String phone;

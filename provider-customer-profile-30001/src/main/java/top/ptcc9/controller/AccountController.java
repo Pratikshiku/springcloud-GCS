@@ -6,6 +6,7 @@ import top.ptcc9.commonresult.CommonResult;
 import top.ptcc9.pojo.DTO.WeChatLoginDto;
 import top.ptcc9.pojo.VO.CustomerVo;
 import top.ptcc9.service.AccountService;
+import top.ptcc9.utils.RedisUtil;
 
 import javax.annotation.Resource;
 
@@ -18,6 +19,9 @@ import javax.annotation.Resource;
 public class AccountController {
     @Resource
     private AccountService accountService;
+
+    @Resource
+    RedisUtil redisUtil;
 
 
     /**

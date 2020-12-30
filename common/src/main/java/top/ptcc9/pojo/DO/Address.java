@@ -12,13 +12,9 @@ import lombok.Data;
 public class Address {
     private String id;
     private String customerOpenId;
-    private String areaId;
     /**
-     * longitude 经度
-     * latitude  纬度
+     * 广东省-中山市-石岐街道-电子科技大学中山学院-14栋-414
      */
-    private String longitude;
-    private String latitude;
     private String address;
     private String contactName;
     private String phone;

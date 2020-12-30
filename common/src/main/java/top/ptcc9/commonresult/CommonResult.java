@@ -36,19 +36,6 @@ public class CommonResult<T> {
         SUCCESS_QUERY(202,"query success"),
         ERROR_QUERY_NON(203,"no match rows"),
 
-        SUCCESS_INSERT(404,"insert success"),
-        SUCCESS_DELETE(404,"delete success"),
-        SUCCESS_SIGN_UP(205,"sign up success"),
-        SUCCESS_UPDATE(201,"update success"),
-        NO_TOKEN(409,"no token"),
-        EXPIRED_TOKEN(410,"token expired"),
-        ERROR_NO_AUTHORITY(401,"no authority"),
-        ERROR_TIMEOUT(403,"timeout"),
-
-        ERROR_UPDATE(405,"fail update"),
-        ERROR_INSERT(406,"fail insert"),
-        ERROR_DELETE(407,"fail delete"),
-        ERROR_SIGN_UP(408,"fail sign up");
         ;
 
         private Integer code;
