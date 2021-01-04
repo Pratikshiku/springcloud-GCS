@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/common/common.iml" filepath="$PROJECT_DIR$/common/common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/consumer-customer-order-30004/consumer-customer-order-30004.iml" filepath="$PROJECT_DIR$/consumer-customer-order-30004/consumer-customer-order-30004.iml" />
+      <module fileurl="file://$PROJECT_DIR$/consumer-customer-profile-30002/consumer-customer-profile-30002.iml" filepath="$PROJECT_DIR$/consumer-customer-profile-30002/consumer-customer-profile-30002.iml" />
+      <module fileurl="file://$PROJECT_DIR$/provider-customer-order-30003/provider-customer-order-30003.iml" filepath="$PROJECT_DIR$/provider-customer-order-30003/provider-customer-order-30003.iml" />
+      <module fileurl="file://$PROJECT_DIR$/provider-customer-profile-30001/provider-customer-profile-30001.iml" filepath="$PROJECT_DIR$/provider-customer-profile-30001/provider-customer-profile-30001.iml" />
+      <module fileurl="file://$PROJECT_DIR$/springcloud-GCS.iml" filepath="$PROJECT_DIR$/springcloud-GCS.iml" />
+    </modules>
+  </component>
+</project>

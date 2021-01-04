@@ -18,7 +18,7 @@ public class AddressDetailDto {
     /**
      * ["广东省","中山市","石岐街道"]
      */
-    private List<String> province;
+    private List<Object> province;
     /**
      * 电子科技大学中山学院
      */

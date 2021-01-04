@@ -54,9 +54,11 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public CustomerVo getCustomerInfoById(String openid) {
+    public CustomerVo getCustomerInfoById(String openId) {
         Customer customer = null;
-        customer = customerMapper.selectOne(new QueryWrapper<Customer>().eq("open_id", openid));
+        customer = customerMapper.selectOne(
+                new QueryWrapper<Customer>()
+                        .eq("open_id", openId));
         if (customer != null) {
             return customerToVo(customer);
         }

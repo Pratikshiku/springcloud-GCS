@@ -35,8 +35,10 @@ public class CommonResult<T> {
         ERROR_LOGIN(201,"failed login"),
         SUCCESS_QUERY(202,"query success"),
         ERROR_QUERY_NON(203,"no match rows"),
-
-        ;
+        ERROR_QUERY_NON_REDIS(204,"province not available"),
+        ERROR_QUERY_SIZE_ZERO_REDIS(205,"province available but no area"),
+        SUCCESS_INSERT(206,"insert success"),
+        ERROR_INSERT(207,"insert error");
 
         private Integer code;
         private String message;

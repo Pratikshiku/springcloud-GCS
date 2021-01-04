@@ -1,5 +1,7 @@
 package top.ptcc9.pojo.VO;
 
+import lombok.Data;
+
 import java.util.List;
 
 /**
@@ -7,6 +9,7 @@ import java.util.List;
  * @description: 用于查询单个地址
  * @date: 2020-12-28 17:45
  */
+@Data
 public class AddressDetailVo {
     private String id;
     /**

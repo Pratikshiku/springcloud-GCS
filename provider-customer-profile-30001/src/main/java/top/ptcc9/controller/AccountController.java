@@ -37,12 +37,12 @@ public class AccountController {
 
     /**
      * res.code ==> openId
-     * @param openid
+     * @param openId
      * @return
      */
     @RequestMapping(value = "/getCustomerInfoById",method = RequestMethod.GET)
-    public CommonResult<CustomerVo> getCustomerInfoById(String openid) {
-        CustomerVo customerVo = accountService.getCustomerInfoById(openid);
+    public CommonResult<CustomerVo> getCustomerInfoById(String openId) {
+        CustomerVo customerVo = accountService.getCustomerInfoById(openId);
         return customerVo != null ?
                 new CommonResult<>(CommonResult.State.SUCCESS_QUERY, customerVo) :
                 new CommonResult<>(CommonResult.State.ERROR_QUERY_NON);

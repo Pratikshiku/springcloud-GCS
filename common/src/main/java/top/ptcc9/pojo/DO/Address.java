@@ -3,6 +3,8 @@ package top.ptcc9.pojo.DO;
 import cn.hutool.crypto.SecureUtil;
 import lombok.Data;
 
+import java.util.List;
+
 /**
  * @author: HE LONG CAN
  * @description:
@@ -18,4 +20,5 @@ public class Address {
     private String address;
     private String contactName;
     private String phone;
+
 }
