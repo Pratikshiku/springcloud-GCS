@@ -23,6 +23,9 @@ import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Pratik_shiku
+ */
 @SuppressWarnings("unchecked")
 @Service
 public class AddressServiceImpl implements AddressService {
@@ -49,7 +52,6 @@ public class AddressServiceImpl implements AddressService {
 
     @Override
     public List<Object> getAvailableAreaList(String province) {
-        System.out.println("province = " + province);
         if (!redisUtil.hasKey(province)) {
             return null;
         }
@@ -102,6 +104,7 @@ public class AddressServiceImpl implements AddressService {
 
     private AddressVo addressToVo(Address address, String defaultAddressId) {
         AddressVo addressVo = new AddressVo();
+        address.setAddress(address.getAddress().replaceAll("-",""));
         //拷贝属性
         BeanUtil.copyProperties(address, addressVo, "customerOpenId");
         if (!defaultAddressId.equals(address.getId())) {
@@ -135,7 +138,6 @@ public class AddressServiceImpl implements AddressService {
             }
         }
         addressDetailVo.setProvince(provinceList);
-        addressDetailVo.setArea(split[5]);
         addressDetailVo.setDetail(String.valueOf(stringBuilder));
         return addressDetailVo;
     }

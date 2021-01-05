@@ -1,8 +1,6 @@
 package top.ptcc9.service;
 
 import org.springframework.stereotype.Component;
-import top.ptcc9.commonresult.CommonResult;
-import top.ptcc9.pojo.DO.Customer;
 import top.ptcc9.pojo.DTO.WeChatLoginDto;
 import top.ptcc9.pojo.VO.CustomerVo;
 

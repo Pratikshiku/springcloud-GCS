@@ -4,10 +4,19 @@ spring:
   application:
     name: provider-customer-profile
   datasource:
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://8.129.126.4:23306/customer_profile?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
     username: root
     password: H03089611.
+    hikari:
+      minimum-idle: 5
+      idle-timeout: 180000
+      maximum-pool-size: 100
+      auto-commit: true
+      pool-name: MyHikari
+      max-lifetime: 180000
+      connection-timeout: 30000
+      connection-test-query: SELECT 1
   redis:
     host: 8.129.126.4
     port: 26379

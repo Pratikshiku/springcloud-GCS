@@ -8,7 +8,6 @@ import top.ptcc9.commonresult.CommonResult;
 import top.ptcc9.pojo.DTO.AddressDetailDto;
 import top.ptcc9.pojo.VO.AddressDetailVo;
 import top.ptcc9.pojo.VO.AddressVo;
-import top.ptcc9.pojo.VO.CustomerVo;
 import top.ptcc9.service.AddressService;
 
 import javax.annotation.Resource;
