@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import top.ptcc9.commonresult.CommonResult;
 import top.ptcc9.pojo.DTO.AddressDetailDto;
+import top.ptcc9.pojo.DTO.UpdateAddressDetailDto;
 import top.ptcc9.pojo.VO.AddressDetailVo;
 import top.ptcc9.pojo.VO.AddressVo;
 import top.ptcc9.service.AddressService;
@@ -82,5 +83,28 @@ public class AddressController {
         }catch (RuntimeException e) {
             return new CommonResult<>(CommonResult.State.ERROR_INSERT);
         }
+    }
+
+    /**
+     * 更新address
+     * @param updateAddressDetailDto
+     * @return
+     */
+    @RequestMapping(value = "/updateAddressById", method = RequestMethod.POST)
+    public CommonResult<Boolean> updateAddressById(@RequestBody UpdateAddressDetailDto updateAddressDetailDto) {
+        try {
+            addressService.updateAddressById(updateAddressDetailDto);
+            return new CommonResult<>(CommonResult.State.SUCCESS_UPDATE);
+        }catch (RuntimeException e) {
+            return new CommonResult<>(CommonResult.State.ERROR_UPDATE);
+        }
+    }
+
+    @RequestMapping(value = "/deleteAddressById", method = RequestMethod.GET)
+    public CommonResult<Boolean> deleteAddressById(String addressId, String defaultId) {
+        Boolean result = addressService.deleteAddressById(addressId, defaultId);
+        return addressService.deleteAddressById(addressId, defaultId) ?
+                new CommonResult<>(CommonResult.State.SUCCESS_DELETE):
+                new CommonResult<>(CommonResult.State.ERROR_DELETE);
     }
 }

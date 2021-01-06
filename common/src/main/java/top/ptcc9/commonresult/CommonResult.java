@@ -38,7 +38,11 @@ public class CommonResult<T> {
         ERROR_QUERY_NON_REDIS(204,"province not available"),
         ERROR_QUERY_SIZE_ZERO_REDIS(205,"province available but no area"),
         SUCCESS_INSERT(206,"insert success"),
-        ERROR_INSERT(207,"insert error");
+        ERROR_INSERT(207,"insert error"),
+        SUCCESS_UPDATE(208,"update success"),
+        ERROR_UPDATE(209,"update failed"),
+        SUCCESS_DELETE(210,"delete success"),
+        ERROR_DELETE(211,"delete failed");
 
         private Integer code;
         private String message;

@@ -21,4 +21,10 @@ public class Address {
     private String contactName;
     private String phone;
 
+    /**
+     * 0 - 未删除
+     * 1 - 已删除
+     */
+    private Integer deleted;
+
 }

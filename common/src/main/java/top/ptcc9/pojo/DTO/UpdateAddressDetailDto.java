@@ -16,6 +16,10 @@ public class UpdateAddressDetailDto {
      */
     private String addressId;
     /**
+     * 用户openId
+     */
+    private String openId;
+    /**
      * ["广东省","中山市","石岐街道"]
      */
     private List<Object> province;

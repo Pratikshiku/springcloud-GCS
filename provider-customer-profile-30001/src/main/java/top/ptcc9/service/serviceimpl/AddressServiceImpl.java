@@ -13,6 +13,7 @@ import top.ptcc9.mapper.CustomerMapper;
 import top.ptcc9.pojo.DO.Address;
 import top.ptcc9.pojo.DO.Customer;
 import top.ptcc9.pojo.DTO.AddressDetailDto;
+import top.ptcc9.pojo.DTO.UpdateAddressDetailDto;
 import top.ptcc9.pojo.VO.AddressDetailVo;
 import top.ptcc9.pojo.VO.AddressVo;
 import top.ptcc9.pojo.VO.CustomerVo;
@@ -42,7 +43,8 @@ public class AddressServiceImpl implements AddressService {
     public List<AddressVo> getAddressByOpenId(String openId, String defaultAddressId) {
         List<Address> addressList = addressMapper.selectList(
                 new QueryWrapper<Address>()
-                        .eq("customer_open_id", openId));
+                        .eq("customer_open_id", openId)
+                        .eq("deleted",0));
         List<AddressVo> addressVoList = new ArrayList<>();
         for (Address item : addressList) {
             addressVoList.add(addressToVo(item, defaultAddressId));
@@ -60,7 +62,10 @@ public class AddressServiceImpl implements AddressService {
 
     @Override
     public AddressDetailVo getAddressByAddressId(String addressId, String defaultAddressId) {
-        Address address = addressMapper.selectById(addressId);
+        Address address = addressMapper.selectOne(
+                new QueryWrapper<Address>()
+                        .eq("id", addressId)
+                        .eq("deleted",0));
         AddressDetailVo addressDetailVo = null;
         if (address != null) {
             addressDetailVo = addressToDetailVo(address, defaultAddressId);
@@ -99,6 +104,52 @@ public class AddressServiceImpl implements AddressService {
                     throw new RuntimeException();
                 }
             }
+        }
+    }
+
+    @Override
+    @Transactional
+    public void updateAddressById(UpdateAddressDetailDto updateAddressDetailDto) {
+        Address address = new Address();
+        StringBuilder stringBuilder = new StringBuilder();
+        address.setId(updateAddressDetailDto.getAddressId());
+        address.setCustomerOpenId(updateAddressDetailDto.getOpenId());
+        updateAddressDetailDto.getProvince().forEach(item -> {
+            stringBuilder.append(item);
+            stringBuilder.append("-");
+        });
+        stringBuilder.append(updateAddressDetailDto.getArea() + "-");
+        stringBuilder.append(updateAddressDetailDto.getDetail());
+        address.setAddress(String.valueOf(stringBuilder));
+        address.setContactName(updateAddressDetailDto.getContactName());
+        address.setPhone(updateAddressDetailDto.getPhone());
+        if (addressMapper.update(address, new QueryWrapper<Address>().eq("id",address.getId())) == 0) {
+            throw new RuntimeException();
+        } else {
+            if (updateAddressDetailDto.isChangeDefault()) {
+                Customer customer = new Customer();
+                customer.setOpenId(address.getCustomerOpenId());
+                customer.setDefaultAddressId(address.getId());
+                int open_id = customerMapper.update(customer,
+                        new QueryWrapper<Customer>()
+                                .eq("open_id", customer.getOpenId())
+                );
+                if (open_id == 0) {
+                    throw new RuntimeException();
+                }
+            }
+        }
+    }
+
+    @Override
+    public Boolean deleteAddressById(String addressId, String defaultId) {
+        Address address = addressMapper.selectById(addressId);
+        if (address != null) {
+            address.setDeleted(1);
+            addressMapper.updateById(address);
+            return true;
+        } else {
+            return false;
         }
     }
 

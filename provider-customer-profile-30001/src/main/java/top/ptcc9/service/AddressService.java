@@ -3,6 +3,7 @@ package top.ptcc9.service;
 import org.springframework.stereotype.Component;
 import top.ptcc9.mapper.AddressMapper;
 import top.ptcc9.pojo.DTO.AddressDetailDto;
+import top.ptcc9.pojo.DTO.UpdateAddressDetailDto;
 import top.ptcc9.pojo.VO.AddressDetailVo;
 import top.ptcc9.pojo.VO.AddressVo;
 
@@ -41,4 +42,18 @@ public interface AddressService {
      * @return
      */
     void addAddress(AddressDetailDto addressDetailDto);
+
+    /**
+     * 更新address
+     * @param updateAddressDetailDto
+     * @return
+     */
+    void updateAddressById(UpdateAddressDetailDto updateAddressDetailDto);
+
+    /**
+     * 删除地址
+     * @param addressId
+     * @return
+     */
+    Boolean deleteAddressById(String addressId, String defaultId);
 }
