@@ -55,5 +55,5 @@ public interface AddressService {
      * @param addressId
      * @return
      */
-    Boolean deleteAddressById(String addressId, String defaultId);
+    void deleteAddressById(String addressId, String defaultId);
 }

@@ -142,14 +142,33 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
-    public Boolean deleteAddressById(String addressId, String defaultId) {
-        Address address = addressMapper.selectById(addressId);
-        if (address != null) {
-            address.setDeleted(1);
-            addressMapper.updateById(address);
-            return true;
-        } else {
-            return false;
+    @Transactional
+    public void deleteAddressById(String addressId, String defaultId) {
+        Address address = addressMapper.selectOne(
+                new QueryWrapper<Address>()
+                        .eq("id",addressId)
+                        .eq("deleted",0));
+        if (address == null) {
+            throw new RuntimeException();
+        }
+        address.setDeleted(1);
+        if (addressMapper.updateById(address) == 0) {
+            throw new RuntimeException();
+        }
+        if (addressId.equals(defaultId)) {
+            Customer customer = customerMapper.selectOne(
+                    new QueryWrapper<Customer>()
+                            .eq("default_address_id", defaultId));
+            if (customer != null) {
+                customer.setDefaultAddressId("");
+                if (customerMapper.update(customer,
+                        new QueryWrapper<Customer>()
+                                .eq("open_id",customer.getOpenId())) == 0) {
+                    throw new RuntimeException();
+                }
+            } else {
+                throw new RuntimeException();
+            }
         }
     }
 

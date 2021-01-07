@@ -102,9 +102,11 @@ public class AddressController {
 
     @RequestMapping(value = "/deleteAddressById", method = RequestMethod.GET)
     public CommonResult<Boolean> deleteAddressById(String addressId, String defaultId) {
-        Boolean result = addressService.deleteAddressById(addressId, defaultId);
-        return addressService.deleteAddressById(addressId, defaultId) ?
-                new CommonResult<>(CommonResult.State.SUCCESS_DELETE):
-                new CommonResult<>(CommonResult.State.ERROR_DELETE);
+        try {
+            addressService.deleteAddressById(addressId, defaultId);
+            return new CommonResult<>(CommonResult.State.SUCCESS_DELETE);
+        }catch (RuntimeException e) {
+            return new CommonResult<>(CommonResult.State.ERROR_DELETE);
+        }
     }
 }
