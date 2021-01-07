@@ -12,7 +12,6 @@
         <module>common</module>
         <module>provider-customer-profile-30001</module>
         <module>consumer-customer-profile-30002</module>
-        <module>provider-customer-order-30003</module>
         <module>consumer-customer-order-30004</module>
         <module>provider-worker-profile-30005</module>
         <module>consumer-worker-profile-30006</module>

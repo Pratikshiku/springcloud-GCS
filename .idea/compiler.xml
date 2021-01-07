@@ -7,19 +7,26 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="consumer-worker-profile-30006" />
+        <module name="provider-management" />
         <module name="common" />
         <module name="provider-customer-profile-30001" />
-        <module name="consumer-customer-profile-30002" />
-        <module name="provider-customer-order-30003" />
+        <module name="provider-worker-profile-30005" />
+        <module name="provider-customer-order-30007" />
         <module name="consumer-customer-order-30004" />
+        <module name="consumer-customer-profile-30002" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="common" target="1.8" />
       <module name="consumer-customer-order-30004" target="1.8" />
       <module name="consumer-customer-profile-30002" target="1.8" />
+      <module name="consumer-worker-profile-30006" target="1.8" />
       <module name="provider-customer-order-30003" target="1.8" />
+      <module name="provider-customer-order-30007" target="1.8" />
       <module name="provider-customer-profile-30001" target="1.8" />
+      <module name="provider-management" target="1.8" />
+      <module name="provider-worker-profile-30005" target="1.8" />
       <module name="springcloud-GCS" target="1.8" />
     </bytecodeTargetLevel>
   </component>

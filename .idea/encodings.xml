@@ -4,7 +4,11 @@
     <file url="file://$PROJECT_DIR$/common/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/consumer-customer-profile-30002/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/consumer-customer-profile-30002/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/provider-customer-order-30007/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/provider-customer-order-30007/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/provider-customer-profile-30001/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/provider-customer-profile-30001/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/provider-management/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/provider-management/src/main/resources" charset="UTF-8" />
   </component>
 </project>
