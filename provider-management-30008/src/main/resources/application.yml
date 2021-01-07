@@ -1,11 +1,11 @@
 server:
-  port: 30001
+  port: 30008
 spring:
   application:
-    name: provider-customer-profile
+    name: provider-management
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://8.129.126.4:23306/customer_profile?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://8.129.126.4:23306/gcs_management?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
     username: root
     password: H03089611.
     hikari:
