@@ -25,7 +25,7 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: 39.108.102.124:28848
+        server-addr: 123.56.10.111:28848
 
 #mybatis-plus 配置日志
 mybatis-plus:

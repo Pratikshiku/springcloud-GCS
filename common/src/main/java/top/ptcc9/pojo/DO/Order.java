@@ -10,12 +10,23 @@ import java.util.Date;
  */
 @Data
 public class Order {
-    private Long id;
-    private Long customerId;
-    private Long workerId;
-    private Integer areaId;
-    private Long addressId;
-    private Date createTime;
+    /**
+     * 订单id
+     */
+    private String orderId;
+    /**
+     * 下单顾客id
+     */
+    private String customerId;
+    /**
+     * 工人id - 顾客下单时为null
+     */
+    private String workerId;
+
+    /**
+     * 地址id
+     */
+    private String addressId;
 
     /**
      * 预估重量
@@ -23,11 +34,55 @@ public class Order {
     private Integer preWeight;
 
     /**
-     * 真实重量
+     * 真实重量 - 工人未接单时为null，工人处理订单时若无问题，则真实重量与预估重量相符
      */
     private Integer weight;
 
-    private Double price;
-    private String remarks;
-    private String comment;
+    /**
+     * 总价
+     */
+    private Double totalPrice;
+
+    /**
+     * 优惠价格
+     */
+    private Double discount;
+
+    /**
+     * 最终价格
+     */
+    private Double finalPrice;
+
+
+    /**
+     * 使用的优惠卷id   未使用为null
+     */
+    private Integer couponId;
+
+
+    /**
+     * 订单状态  数据库默认为 0
+     * 0 - 正在进行
+     * 1 - 已完成
+     * 2 - 问题订单
+     */
+    private int status;
+
+    /**
+     * 备注
+     */
+    private String remark;
+
+    /**
+     * 发起时间
+     */
+    private Date createTime;
+    /**
+     * 工人接单时间
+     */
+    private Date receiveTime;
+    /**
+     * 订单完成时间
+     */
+    private Date completeTime;
 }
