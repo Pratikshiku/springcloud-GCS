@@ -14,4 +14,9 @@ public class Picture {
     private String picId;
     private String orderId;
     private String path;
+    /**
+     * 0 - 顾客上传
+     * 1 - 工作人员上传
+     */
+    private Integer uploader;
 }

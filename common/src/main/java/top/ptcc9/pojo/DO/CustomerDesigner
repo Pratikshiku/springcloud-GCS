@@ -1,4 +1,4 @@
-顾客下单类 === order
+顾客下单类 === bill
 id                  订单id *
 customer_id         顾客id *
 worker_id           工作人员id *

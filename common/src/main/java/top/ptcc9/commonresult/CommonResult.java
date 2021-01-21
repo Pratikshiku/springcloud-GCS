@@ -1,6 +1,8 @@
 package top.ptcc9.commonresult;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * @Author: Pratikshiku
@@ -8,6 +10,8 @@ import lombok.Data;
  * @Date: 2020-11-17 12:02
  */
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class CommonResult<T> {
     private Integer code;
     private String message;
@@ -42,7 +46,11 @@ public class CommonResult<T> {
         SUCCESS_UPDATE(208,"update success"),
         ERROR_UPDATE(209,"update failed"),
         SUCCESS_DELETE(210,"delete success"),
-        ERROR_DELETE(211,"delete failed");
+        ERROR_DELETE(211,"delete failed"),
+        SUCCESS_UPLOAD(212,"upload success"),
+        ERROR_UPLOAD(213,"upload failed"),
+        SUCCESS_CUSTOMER_ORDER(214,"customer success order"),
+        ERROR_CUSTOMER_ORDER_INSUFFICIENT_BALANCE(215,"customer order failed with insufficient balance");
 
         private Integer code;
         private String message;

@@ -108,7 +108,7 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
-    @Transactional
+    @Transactional(rollbackFor = RuntimeException.class)
     public void updateAddressById(UpdateAddressDetailDto updateAddressDetailDto) {
         Address address = new Address();
         StringBuilder stringBuilder = new StringBuilder();

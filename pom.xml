@@ -12,10 +12,10 @@
         <module>common</module>
         <module>provider-customer-profile-30001</module>
         <module>consumer-customer-profile-30002</module>
-        <module>consumer-customer-order-30004</module>
+        <module>consumer-customer-bill-30004</module>
         <module>provider-worker-profile-30005</module>
         <module>consumer-worker-profile-30006</module>
-        <module>provider-customer-order-30007</module>
+        <module>provider-customer-bill-30007</module>
         <module>provider-management</module>
     </modules>
 

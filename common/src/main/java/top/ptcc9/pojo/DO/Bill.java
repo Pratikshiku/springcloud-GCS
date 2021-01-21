@@ -9,11 +9,11 @@ import java.util.Date;
  * @date: 2020-11-21 17:02
  */
 @Data
-public class Order {
+public class Bill {
     /**
      * 订单id
      */
-    private String orderId;
+    private String billId;
     /**
      * 下单顾客id
      */
@@ -57,7 +57,7 @@ public class Order {
     /**
      * 使用的优惠卷id   未使用为null
      */
-    private Integer couponId;
+    private String couponId;
 
 
     /**
@@ -66,7 +66,7 @@ public class Order {
      * 1 - 已完成
      * 2 - 问题订单
      */
-    private int status;
+    private Integer status;
 
     /**
      * 备注
